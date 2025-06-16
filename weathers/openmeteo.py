@@ -9,8 +9,10 @@ import traceback
 class OpenMeteoClient:
 
 
-    def __init__(self):
+    def __init__(self, historical=False):
         self.__base_url = 'https://api.open-meteo.com/v1/'
+        if historical:
+            self.__base_url = 'https://historical-forecast-api.open-meteo.com/v1/'
         self.__default_params = {
             # 'latitude': os.environ['HAC_LATITUDE'],
             # 'longitude': os.environ['HAC_LONGITUDE'],

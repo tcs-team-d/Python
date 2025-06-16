@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 import logging
 import traceback
-from weathers.client import OpenMeteoClient
+from weathers.openmeteo import OpenMeteoClient
 
 
 
