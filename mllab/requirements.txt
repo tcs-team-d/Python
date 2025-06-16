@@ -1,0 +1,7 @@
+requests
+pandas
+scikit-learn
+matplotlib
+seaborn
+catboost
+tqdm
