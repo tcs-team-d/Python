@@ -40,11 +40,12 @@ weather_params = [
     'sunshine_duration',
     'shortwave_radiation_sum',
     'uv_index_max',
+    'et0_fao_evapotranspiration',
     'rain_sum',
+    'precipitation_hours',
     'cloud_cover_min',
     'cloud_cover_max',
     'cloud_cover_mean',
-    'precipitation_hours',
     'windspeed_10m_max',
     'windgusts_10m_max',
 ]
