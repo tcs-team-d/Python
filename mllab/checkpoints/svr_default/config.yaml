@@ -1,0 +1,33 @@
+savedir: checkpoints/svr_default/
+model: SVR
+independent_variables:
+- weekday
+- month
+- weathercode
+- temperature_2m_mean
+- apparent_temperature_min
+- apparent_temperature_max
+- sunshine_duration
+- uv_index_max
+- et0_fao_evapotranspiration
+- rain_sum
+- precipitation_hours
+- cloud_cover_max
+- windspeed_10m_max
+- windgusts_10m_max
+grid_params:
+  C:
+  - 0.1
+  - 1
+  - 10
+  - 100
+  gamma:
+  - scale
+  - 0.001
+  - 0.01
+  - 0.1
+  - 1
+  epsilon:
+  - 0.1
+  - 0.2
+  - 0.5
