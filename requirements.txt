@@ -4,3 +4,8 @@
 
 azure-functions
 requests
+
+pandas
+joblib
+pyyaml
+catboost
