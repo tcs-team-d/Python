@@ -16,7 +16,7 @@ dfs.rename(columns={jp: en for jp, en in zip(columns_jp, columns_en)}, inplace=T
 dfs = dfs.replace('-', 0).fillna(0) # ignore: type
 dfs[columns_en[2:]] = dfs[columns_en[2:]].astype(int)
 dfs['date'] = pd.to_datetime(dfs['date'])
-dfs['weekday'] = dfs['weekday'].map({'月': 0, '火': 1, '水': 2, '木': 3, '金': 4, '土': 5, '日': 6})
+dfs['weekday'] = dfs['weekday'].map({'土': 0, '日': 1, '月': 2, '火': 3, '水': 4, '木': 5, '金': 6})
 dfs['month'] = dfs['date'].dt.month
 # print(dfs.info())
 # print(dfs.head())
