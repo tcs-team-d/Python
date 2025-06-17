@@ -1,0 +1,43 @@
+savedir: checkpoints/randomforest_default/
+model: RandomForestRegressor
+independent_variables:
+  - weekday
+  - month
+  - weathercode
+  # - temperature_2m_min
+  # - temperature_2m_max
+  - temperature_2m_mean
+  - apparent_temperature_min
+  - apparent_temperature_max
+  # - apparent_temperature_mean
+  - sunshine_duration
+  # - shortwave_radiation_sum
+  - uv_index_max
+  - et0_fao_evapotranspiration
+  - rain_sum
+  - precipitation_hours
+  # - cloud_cover_min
+  - cloud_cover_max
+  # - cloud_cover_mean
+  - windspeed_10m_max
+  - windgusts_10m_max
+grid_params:
+  n_estimators:
+    - 75
+    - 100
+    - 200
+    - 300
+  max_depth:
+    - 5
+    - 6
+    - 7
+    - 8
+  max_features:
+    - 0.5
+    - 0.75
+    - 1
+  min_samples_leaf:
+    - 1
+    - 2
+    - 3
+    - 5
