@@ -35,16 +35,20 @@ python analyze.py
 ```
 
 いくつか相関がみられるが、全体的にデータの関係が線形でない(プロットがあまり比例の関係になく、広がっている)
-したがって、学習モデルは非線形をモデリングできるようなDecitoin Treeのようなものをベースにする
+したがって、学習モデルは非線形をモデリングできるDecitoin Treeのようなものをベースにする
 
 ## 学習
 
 学習時にconfigファイルを引数に指定することで、使用する学習モデルやGridSearchのパラメータを指定する
 
-e.g. catboost
+e.g. RandomForestRegressor
 
 ```cmd
-python train.py train_configs/catboost_default.yaml
+python train.py train_configs/randomforest_default.yaml
 ```
 
-checkpointsディレクトリに学習済モデルがtargetごとに保存される
+checkpointsディレクトリに学習済モデルが保存される
+
+このとき、学習済モデルはtargetごとに計6つ保存される
+
+モデルごとのbest paramsや検証スコアは同ディレクトリ内にconfig.yamlとして保存される

@@ -1,5 +1,9 @@
 savedir: checkpoints/svr_default/
 model: SVR
+scoring:
+  r2: r2 
+  neg_mean_absolute_error: neg_mean_absolute_error
+refit: neg_mean_absolute_error
 independent_variables:
   - weekday
   - month
