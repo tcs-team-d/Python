@@ -13,16 +13,29 @@ import pandas as pd
 
 
 targets = ['pale_ale', 'lager', 'ipa', 'white_beer', 'dark_beer', 'fruit_beer']
-checkpoinds_path = os.path.join('hopcasts', 'catboost_default')
-models = {
-    target: joblib.load(os.path.join(checkpoinds_path, f'model_{target}.joblib'))
-    for target in targets
-}
-with open(os.path.join(checkpoinds_path, 'config.yaml'), 'r') as file:
-    config = yaml.safe_load(file)
+
+_loaded_models = None
+_loaded_config = None
+
+def load_models():
+    global _loaded_models
+    global _loaded_config
+    
+    checkpoinds_path = os.path.join('hopcasts', 'catboost_default')
+    if _loaded_models is None:
+        _loaded_models = {
+            target: joblib.load(os.path.join(checkpoinds_path, f'model_{target}.joblib'))
+            for target in targets
+        }
+    if _loaded_config is None:
+        with open(os.path.join(checkpoinds_path, 'config.yaml'), 'r') as file:
+            _loaded_config = yaml.safe_load(file)
+    return _loaded_models, _loaded_config
 
 
 def get_weekly_demands(req: func.HttpRequest) -> func.HttpResponse:
+    models, config = load_models()
+    
     try:           
         omc = OpenMeteoClient()
         start_date = datetime.strptime(req.params.get('start_date'), '%Y-%m-%d').date() # type: ignore
