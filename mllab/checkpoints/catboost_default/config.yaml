@@ -1,5 +1,9 @@
 savedir: checkpoints/catboost_default/
 model: CatBoostRegressor
+scoring:
+  r2: r2
+  neg_mean_absolute_error: neg_mean_absolute_error
+refit: neg_mean_absolute_error
 independent_variables:
 - weekday
 - month
@@ -17,20 +21,17 @@ independent_variables:
 - windgusts_10m_max
 grid_params:
   depth:
+  - 3
   - 4
   - 5
-  - 6
-  - 7
   learning_rate:
   - 0.05
   - 0.1
   - 0.25
-  - 0.5
   iterations:
+  - 75
   - 100
   - 200
-  - 300
-  - 500
   l2_leaf_reg:
   - 3
   - 5
@@ -38,7 +39,97 @@ grid_params:
   subsample:
   - 0.5
   - 0.75
-  - 0.9
   - 1
   early_stopping_rounds:
   - 50
+log:
+  pale_ale:
+    best_params:
+      depth: 4
+      early_stopping_rounds: 50
+      iterations: 75
+      l2_leaf_reg: 3
+      learning_rate: 0.1
+      subsample: 0.75
+    scores:
+      r2:
+        train: 0.6864800016929672
+        val: 0.41260975740936967
+      neg_mean_absolute_error:
+        train: -1.0912590180401878
+        val: -1.4531014556369983
+  lager:
+    best_params:
+      depth: 3
+      early_stopping_rounds: 50
+      iterations: 100
+      l2_leaf_reg: 5
+      learning_rate: 0.1
+      subsample: 1
+    scores:
+      r2:
+        train: 0.7590790486873161
+        val: 0.5357131448806691
+      neg_mean_absolute_error:
+        train: -1.091554412622219
+        val: -1.4795000554446358
+  ipa:
+    best_params:
+      depth: 3
+      early_stopping_rounds: 50
+      iterations: 100
+      l2_leaf_reg: 10
+      learning_rate: 0.25
+      subsample: 0.5
+    scores:
+      r2:
+        train: 0.7848432246541375
+        val: 0.41023867344599285
+      neg_mean_absolute_error:
+        train: -0.6991843483282556
+        val: -1.1136393373737647
+  white_beer:
+    best_params:
+      depth: 3
+      early_stopping_rounds: 50
+      iterations: 100
+      l2_leaf_reg: 5
+      learning_rate: 0.1
+      subsample: 1
+    scores:
+      r2:
+        train: 0.7255735772066332
+        val: 0.46799837635214353
+      neg_mean_absolute_error:
+        train: -0.7842854875095344
+        val: -1.029200616238274
+  dark_beer:
+    best_params:
+      depth: 4
+      early_stopping_rounds: 50
+      iterations: 100
+      l2_leaf_reg: 3
+      learning_rate: 0.05
+      subsample: 0.75
+    scores:
+      r2:
+        train: 0.6360812250567933
+        val: 0.39617420221503397
+      neg_mean_absolute_error:
+        train: -0.8143323975325998
+        val: -1.006443076686716
+  fruit_beer:
+    best_params:
+      depth: 3
+      early_stopping_rounds: 50
+      iterations: 100
+      l2_leaf_reg: 10
+      learning_rate: 0.05
+      subsample: 0.75
+    scores:
+      r2:
+        train: 0.3626063910467539
+        val: 0.21061036863560784
+      neg_mean_absolute_error:
+        train: -1.1690072479818636
+        val: -1.3015192865744123

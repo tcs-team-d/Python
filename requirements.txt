@@ -6,7 +6,10 @@ azure-functions
 requests
 psycopg2-binary
 
-pandas
-joblib
 pyyaml
-catboost
+scikit-learn
+
+## Too large package size
+# pandas
+# catboost
+# joblib

@@ -1,5 +1,9 @@
 savedir: checkpoints/svr_default/
 model: SVR
+scoring:
+  r2: r2
+  neg_mean_absolute_error: neg_mean_absolute_error
+refit: neg_mean_absolute_error
 independent_variables:
 - weekday
 - month
@@ -31,3 +35,76 @@ grid_params:
   - 0.1
   - 0.2
   - 0.5
+log:
+  pale_ale:
+    best_params:
+      C: 1
+      epsilon: 0.5
+      gamma: 0.001
+    scores:
+      r2:
+        train: 0.48424018395767837
+        val: 0.07799073331052993
+      neg_mean_absolute_error:
+        train: -1.2104786643594008
+        val: -1.8554375679589437
+  lager:
+    best_params:
+      C: 10
+      epsilon: 0.5
+      gamma: scale
+    scores:
+      r2:
+        train: 0.12132593394989384
+        val: 0.09168710980214925
+      neg_mean_absolute_error:
+        train: -1.9758567027074903
+        val: -2.008287281033718
+  ipa:
+    best_params:
+      C: 100
+      epsilon: 0.1
+      gamma: scale
+    scores:
+      r2:
+        train: 0.08838197493274688
+        val: 0.03191276893243922
+      neg_mean_absolute_error:
+        train: -1.3382191770976408
+        val: -1.392248286057259
+  white_beer:
+    best_params:
+      C: 1
+      epsilon: 0.1
+      gamma: 0.001
+    scores:
+      r2:
+        train: 0.500433796553889
+        val: 0.011839296467204918
+      neg_mean_absolute_error:
+        train: -0.6970802832499225
+        val: -1.3597868255350023
+  dark_beer:
+    best_params:
+      C: 1
+      epsilon: 0.5
+      gamma: 0.001
+    scores:
+      r2:
+        train: 0.5985267022227889
+        val: 0.10902278540675851
+      neg_mean_absolute_error:
+        train: -0.7278403741967056
+        val: -1.1953237079253722
+  fruit_beer:
+    best_params:
+      C: 10
+      epsilon: 0.1
+      gamma: scale
+    scores:
+      r2:
+        train: 0.0388875346650297
+        val: 0.006049123046149485
+      neg_mean_absolute_error:
+        train: -1.4264948789672878
+        val: -1.457708854812366
