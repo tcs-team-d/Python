@@ -1,16 +1,15 @@
 import azure.functions as func
 import os
-import yaml
-import joblib
 import json
-from datetime import datetime, timedelta
 import logging
 import traceback
+from datetime import datetime, timedelta
+import yaml
+import joblib
+import numpy as np
 from weathers.openmeteo import OpenMeteoClient
-from datetime import datetime
-import pandas as pd
- 
 
+ 
 
 targets = ['pale_ale', 'lager', 'ipa', 'white_beer', 'dark_beer', 'fruit_beer']
 
@@ -21,7 +20,7 @@ def load_models():
     global _loaded_models
     global _loaded_config
     
-    checkpoinds_path = os.path.join('hopcasts', 'catboost_default')
+    checkpoinds_path = os.path.join('hopcasts', 'checkpoints', 'randomforest_default')
     if _loaded_models is None:
         _loaded_models = {
             target: joblib.load(os.path.join(checkpoinds_path, f'model_{target}.joblib'))
@@ -35,6 +34,7 @@ def load_models():
 
 def get_weekly_demands(req: func.HttpRequest) -> func.HttpResponse:
     models, config = load_models()
+    print(config['model'])
     
     try:           
         omc = OpenMeteoClient()
@@ -51,15 +51,14 @@ def get_weekly_demands(req: func.HttpRequest) -> func.HttpResponse:
         logging.error(f'Exception occured in {traceback.format_exc()}: {e}')
         return func.HttpResponse(str(e), status_code=500)
 
-    x = pd.DataFrame([
-        {
-            'weekday': datetime.fromisoformat(date).weekday(),
-            'month': datetime.fromisoformat(date).month,
-            **{col: res['daily'][col][i] for col in config['independent_variables'][2:]} # type:ignore
-        }
-        for i, date in enumerate(res['daily']['time']) # type:ignore
+    x = np.array([
+        [
+            datetime.fromisoformat(date).weekday(),
+            datetime.fromisoformat(date).month,
+            *[res['daily'][col][i] for col in config['independent_variables'][2:]]  # type: ignore
+        ]
+        for i, date in enumerate(res['daily']['time'])  # type: ignore
     ])
-
     predictions = {target: models[target].predict(x) for target in targets}
     res = [
         {
@@ -67,7 +66,7 @@ def get_weekly_demands(req: func.HttpRequest) -> func.HttpResponse:
             **{target: predictions[target][i] for target in targets}
         } for i, date in enumerate(res['daily']['time']) # type: ignore
     ]
-    print(res)
+    # print(res)
     return func.HttpResponse(
         body=json.dumps(res, ensure_ascii=False, indent=2),
         status_code=200,
