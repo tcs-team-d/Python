@@ -7,3 +7,16 @@ local.settings.json
 test
 .venv
 mllab/
+dbinit/
+
+__pycache__/
+*__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+*.mlvenv
+**/site-packages/
+**/Lib/
+**/*.whl

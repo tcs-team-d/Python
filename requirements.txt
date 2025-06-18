@@ -4,6 +4,7 @@
 
 azure-functions
 requests
+psycopg2-binary
 
 pandas
 joblib
