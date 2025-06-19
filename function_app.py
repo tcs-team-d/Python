@@ -1,25 +1,25 @@
 import azure.functions as func
-from weathers.forecast import get_weekly_forecast, get_daily_forecast
-from hopcasts.predict import get_weekly_demands
+from modules.weather import get_daily_forecast_wrapper, get_hourly_forecast_wrapper
+from modules.predictions import get_demand
 
 
  
 app = func.FunctionApp(http_auth_level=func.AuthLevel.ANONYMOUS)
 
  
-@app.route(route='forecasts', methods=['GET'])
-@app.function_name(name='get_weekly_forecast')
-def _get_weekly_forecast(req: func.HttpRequest) -> func.HttpResponse:
-    return get_weekly_forecast(req)
-
-
-@app.route(route='forecasts/{date}', methods=['GET'])
+@app.route(route='forecasts/daily', methods=['GET'])
 @app.function_name(name='get_daily_forecast')
 def _get_daily_forecast(req: func.HttpRequest) -> func.HttpResponse:
-    return get_daily_forecast(req)
+    return get_daily_forecast_wrapper(req)
+
+
+@app.route(route='forecasts/hourly', methods=['GET'])
+@app.function_name(name='get_hourly_forecast')
+def _get_hourly_forecast(req: func.HttpRequest) -> func.HttpResponse:
+    return get_hourly_forecast_wrapper(req)
 
 
 @app.route(route='demands', methods=['GET'])
-@app.function_name(name='get_weekly_demands')
-def _get_weekly_demands (req: func.HttpRequest) -> func.HttpResponse:
-    return get_weekly_demands(req)
+@app.function_name(name='get_demand')
+def _get_demand (req: func.HttpRequest) -> func.HttpResponse:
+    return get_demand(req)

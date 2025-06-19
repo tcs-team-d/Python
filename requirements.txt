@@ -9,6 +9,10 @@ psycopg2-binary
 pyyaml
 scikit-learn
 
+# openmeteo-requests
+requests-cache
+retry-requests
+
 ## Too large package size
 # pandas
 # catboost
