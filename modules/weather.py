@@ -2,15 +2,31 @@ import azure.functions as func
 import json
 import logging
 import traceback
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
 import requests
 from retry_requests import retry
 from modules.openmeteoclient import OpenMeteoClient
+from modules.db import get_db_connection, insert_weather_record
 
 
 
 _session = retry(requests.Session(), retries=3, backoff_factor=0.2)
 openmeteo = OpenMeteoClient(session=_session)
+
+
+def post_daily_forecast(mytimer: func.TimerRequest) -> None:
+    try:
+        JST = timezone(timedelta(hours=9), 'JST')
+        date_time = datetime.now(JST)
+        date = date_time.strftime('%Y-%m-%d')
+        res = get_daily_forecast(date, date, OpenMeteoClient.ALL_DAILY_PARAMS)
+
+        conn = get_db_connection()
+        insert_weather_record(conn, res['daily']) # type: ignore
+        conn.close()
+        logging.info(f'[TIMER] Executed at {date_time}')
+    except Exception as e:
+        logging.error(traceback.format_exc())
 
 
 def get_daily_forecast_wrapper(req: func.HttpRequest) -> func.HttpResponse:

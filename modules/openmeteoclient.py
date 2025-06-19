@@ -30,6 +30,27 @@ class OpenMeteoClient:
         82: '激しいにわか雨',
     }
 
+    ALL_DAILY_PARAMS = [
+        'weathercode',
+        'temperature_2m_min',
+        'temperature_2m_max',
+        'temperature_2m_mean',
+        'apparent_temperature_min',
+        'apparent_temperature_max',
+        'apparent_temperature_mean',
+        'sunshine_duration',
+        'shortwave_radiation_sum',
+        'uv_index_max',
+        'et0_fao_evapotranspiration',
+        'rain_sum',
+        'precipitation_hours',
+        'cloud_cover_min',
+        'cloud_cover_max',
+        'cloud_cover_mean',
+        'windspeed_10m_max',
+        'windgusts_10m_max',
+    ]
+
     DEFAULT_DAILY_PARAMS = [
         'weathercode',
         'temperature_2m_max', # ℃
