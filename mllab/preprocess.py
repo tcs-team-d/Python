@@ -1,5 +1,5 @@
 import pandas as pd
-from openmeteo import OpenMeteoClient
+from openmeteoclient import OpenMeteoClient
 
 
 
@@ -28,7 +28,7 @@ dfs['month'] = dfs['date'].dt.month
 '''
 get weather data from open-meteo
 '''
-omc = OpenMeteoClient(historical=True)
+openmeteo = OpenMeteoClient()
 weather_params = [
     'weathercode',
     'temperature_2m_min',
@@ -54,7 +54,7 @@ params = {
     'start_date': '2024-04-01',
     'end_date': '2025-04-01',
 }
-res = omc.forecast(**params)
+res = openmeteo.forecast(**params) # should be .archive(), but forecast() is more compatible
 dfw = pd.DataFrame(res['daily']) # type: ignore
 dfw['date'] = pd.to_datetime(dfw['time'])
 dfw = dfw.drop(columns='time')
