@@ -54,7 +54,7 @@ class OpenMeteoClient:
 
     def __init__(self, session=None):
         self.session = session or requests.Session()
-        self.__base_url = 'https://api.open-meteo.com/v1/'
+        self.__base_url = 'https://historical-forecast-api.open-meteo.com/v1/'
         self.__base_params = {
             # 'latitude': os.environ['HAC_LATITUDE'],
             # 'longitude': os.environ['HAC_LONGITUDE'],
