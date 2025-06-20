@@ -1,0 +1,23 @@
+CREATE TABLE weather_records (
+    id SERIAL PRIMARY KEY,
+    record_date DATE NOT NULL,
+    weathercode INT,
+    temperature_2m_min FLOAT,
+    temperature_2m_max FLOAT,
+    temperature_2m_mean FLOAT,
+    apparent_temperature_min FLOAT,
+    apparent_temperature_max FLOAT,
+    apparent_temperature_mean FLOAT,
+    relative_humidity_2m_mean FLOAT,
+    sunshine_duration FLOAT,
+    shortwave_radiation_sum FLOAT,
+    uv_index_max FLOAT,
+    et0_fao_evapotranspiration FLOAT,
+    rain_sum FLOAT,
+    precipitation_hours FLOAT,
+    cloud_cover_min INT,
+    cloud_cover_max INT,
+    cloud_cover_mean INT,
+    windspeed_10m_max FLOAT,
+    windgusts_10m_max FLOAT
+);
