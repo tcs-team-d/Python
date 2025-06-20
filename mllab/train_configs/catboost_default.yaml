@@ -14,6 +14,7 @@ independent_variables:
   - apparent_temperature_min
   - apparent_temperature_max
   # - apparent_temperature_mean
+  - relative_humidity_2m_mean
   - sunshine_duration
   # - shortwave_radiation_sum
   - uv_index_max

@@ -22,7 +22,7 @@ dfs['month'] = dfs['date'].dt.month
 # print(dfs.head())
 # print(dfs.isnull().sum())
 # print(dfs.describe())
-# dfs.to_csv('data/s_20240401_20250401.csv', index=False)
+dfs.to_csv('data/s_20240401_20250401.csv', index=False)
 
 
 '''
@@ -37,6 +37,7 @@ weather_params = [
     'apparent_temperature_min',
     'apparent_temperature_max',
     'apparent_temperature_mean',
+    'relative_humidity_2m_mean',
     'sunshine_duration',
     'shortwave_radiation_sum',
     'uv_index_max',
@@ -52,7 +53,7 @@ weather_params = [
 params = {
     'daily': weather_params,
     'start_date': '2024-04-01',
-    'end_date': '2025-04-01',
+    'end_date': '2025-06-19',
 }
 res = openmeteo.forecast(**params) # should be .archive(), but forecast() is more compatible
 dfw = pd.DataFrame(res['daily']) # type: ignore
@@ -62,13 +63,13 @@ dfw = dfw.drop(columns='time')
 # print(dfw.head())
 # print(dfw.isnull().sum())
 # print(dfw.describe())
-# dfs.to_csv('data/w_20240401_20250401.csv', index=False)
+dfw.to_csv('data/w_20240401_20250401.csv', index=False)
 
 
 '''
 merge sales and weather data
 '''
-df = pd.merge(dfs, dfw, on='date')
+df = pd.merge(dfs, dfw, on='date') # inner join
 print(df.info())
 print(df.head())
 print(df.isnull().sum())

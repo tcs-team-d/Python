@@ -22,35 +22,21 @@ class OpenMeteoClient:
         61: '弱い雨',
         63: '中程度の雨',
         65: '強い雨',
+        66: ,
+        67: ,
         71: '弱い雪',
         73: '中程度の雪',
         75: '強い雪',
+        77: ,
         80: '弱いにわか雨',
         81: 'にわか雨',
         82: '激しいにわか雨',
+        85: ,
+        86: ,
+        95: ,
+        96: ,
+        99: ,
     }
-
-    DEFAULT_DAILY_PARAMS = [
-        'weathercode',
-        'temperature_2m_max', # ℃
-        'temperature_2m_min', # ℃
-        'temperature_2m_mean', # ℃
-        'relative_humidity_2m_mean', # %
-        'windspeed_10m_max', # km/h
-    ]
-
-    DEFAULT_HOURLY_PARAMS = [
-        'weathercode',
-        'temperature_2m', # ℃
-        'apparent_temperature', # ℃
-        'relative_humidity_2m', # %
-        'rain', # mm
-        'precipitation_probability', # %
-        'cloud_cover', # %
-        'windspeed_10m', # km/h
-        'shortwave_radiation', # W/m²
-        'uv_index'
-    ]
 
     def __init__(self, session=None):
         self.session = session or requests.Session()
@@ -82,7 +68,7 @@ class OpenMeteoClient:
     def __get(self, endpoint, params=None):
         url = urljoin(self.__base_url, endpoint)
         try:
-            res = self.session.get(url, params=params, timeout=10) 
+            res = self.session.get(url, params=params, timeout=30) 
             res.raise_for_status()
             return res.json()
         except requests.exceptions.RequestException as e:

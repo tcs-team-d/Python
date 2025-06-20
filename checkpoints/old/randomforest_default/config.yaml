@@ -11,7 +11,6 @@ independent_variables:
 - temperature_2m_mean
 - apparent_temperature_min
 - apparent_temperature_max
-- relative_humidity_2m_mean
 - sunshine_duration
 - uv_index_max
 - et0_fao_evapotranspiration
@@ -44,78 +43,78 @@ log:
   pale_ale:
     best_params:
       max_depth: 5
-      max_features: 0.5
-      min_samples_leaf: 1
+      max_features: 0.75
+      min_samples_leaf: 5
       n_estimators: 100
     scores:
       r2:
-        train: 0.7064444823466721
-        val: 0.40759248491160277
+        train: 0.6342821073523861
+        val: 0.40507793933200953
       neg_mean_absolute_error:
-        train: -1.0792029347643335
-        val: -1.4908334157154188
+        train: -1.1708902491180535
+        val: -1.4945687191762658
   lager:
-    best_params:
-      max_depth: 8
-      max_features: 0.75
-      min_samples_leaf: 3
-      n_estimators: 300
-    scores:
-      r2:
-        train: 0.8380001133365967
-        val: 0.5176731644999629
-      neg_mean_absolute_error:
-        train: -0.8526505152864152
-        val: -1.5005377350740283
-  ipa:
     best_params:
       max_depth: 6
       max_features: 0.75
+      min_samples_leaf: 2
+      n_estimators: 100
+    scores:
+      r2:
+        train: 0.8216774551532051
+        val: 0.5185369858073929
+      neg_mean_absolute_error:
+        train: -0.9233688225895037
+        val: -1.5128472002634936
+  ipa:
+    best_params:
+      max_depth: 7
+      max_features: 0.75
       min_samples_leaf: 1
       n_estimators: 100
     scores:
       r2:
-        train: 0.7824580909817213
-        val: 0.40929385655108613
+        train: 0.823787088848559
+        val: 0.41567305129292775
       neg_mean_absolute_error:
-        train: -0.7043828532677584
-        val: -1.1521962122110467
+        train: -0.6342470722899354
+        val: -1.1476022662138479
   white_beer:
     best_params:
-      max_depth: 7
+      max_depth: 6
       max_features: 0.75
       min_samples_leaf: 2
       n_estimators: 300
     scores:
       r2:
-        train: 0.8416983873319752
-        val: 0.46016328115963284
+        train: 0.808631449296365
+        val: 0.46528420377032526
       neg_mean_absolute_error:
-        train: -0.5757963908739872
-        val: -1.0691563774014026
+        train: -0.6442773941912215
+        val: -1.0608642948939238
   dark_beer:
     best_params:
       max_depth: 7
-      max_features: 0.75
-      min_samples_leaf: 3
+      max_features: 0.5
+      min_samples_leaf: 5
       n_estimators: 100
     scores:
       r2:
-        train: 0.772574444046118
-        val: 0.3875335720301794
+        train: 0.6760213667920087
+        val: 0.3877010869192229
       neg_mean_absolute_error:
-        train: -0.6211813656893435
-        val: -0.9937792189725148
+        train: -0.7380421779535646
+        val: -0.9983798767127992
   fruit_beer:
     best_params:
-      max_depth: 8
-      max_features: 0.5
-      min_samples_leaf: 3
-      n_estimators: 75
+      max_depth: 7
+      max_features: 0.75
+      min_samples_leaf: 5
+      n_estimators: 100
     scores:
       r2:
-        train: 0.6799786596354411
-        val: 0.18512143562949895
+        train: 0.5735788720672781
+        val: 0.18257955623453026
       neg_mean_absolute_error:
-        train: -0.8138414582924213
-        val: -1.345538258823705
+        train: -0.9407141429970066
+        val: -1.335238927583706
